@@ -1,0 +1,14 @@
+#!/bin/csh -f 
+# -f option forces NOT to read the .cshrc
+# Useage: backupfile <filename> <directory>
+# *NOTE* include the forward slash with the directory
+#
+set now=`/bin/date +%m_%d_%y_%Hh%Mm`
+set file=`echo "$1" | awk -F. '{print $1}'`
+set ext=`echo "$1" | awk -F. '{print $2}'`
+if ($ext == "") then
+	/bin/cp -i $1 $2$file\_$now
+else 	
+	/bin/cp -i $1 $2$file\_$now.$ext
+endif
+
